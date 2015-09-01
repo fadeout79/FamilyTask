@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
  
-import com.journaldev.model.Person;
+import family.model.Person;
  
 public class PersonDAOImpl implements PersonDAO {
  

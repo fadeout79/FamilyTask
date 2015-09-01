@@ -2,7 +2,7 @@ package family.dao;
 
 import java.util.List;
 
-import com.journaldev.model.Person;
+import family.model.Person;
  
 public interface PersonDAO {
  
