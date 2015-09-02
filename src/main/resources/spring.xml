@@ -9,34 +9,19 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
         destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/TestDB" />
-        <property name="username" value="pankaj" />
-        <property name="password" value="pankaj123" />
+        <property name="url" value="jdbc:mysql://localhost:3306/taches" />
+        <property name="username" value="fadeout79" />
+        <property name="password" value="30i07r79l" />
     </bean>
  
-<!-- Hibernate 3 XML SessionFactory Bean definition-->
-<!--     <bean id="hibernate3SessionFactory"
-        class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mappingResources">
-            <list>
-                <value>person.hbm.xml</value>
-            </list>
-        </property>
-        <property name="hibernateProperties">
-            <value>
-                hibernate.dialect=org.hibernate.dialect.MySQLDialect
-            </value>
-        </property>
-    </bean> -->
  
-<!-- Hibernate 3 Annotation SessionFactory Bean definition-->
-    <bean id="hibernate3AnnotatedSessionFactory"
-        class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+<!-- Hibernate 4 SessionFactory Bean definition -->
+<bean id="hibernate4AnnotatedSessionFactory"
+        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="annotatedClasses">
             <list>
-                <value>com.journaldev.model.Person</value>
+                <value>family.model.Person</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -47,8 +32,9 @@
             </props>
         </property>
     </bean>
+ 
      
-    <bean id="personDAO" class="com.journaldev.dao.PersonDAOImpl">
-        <property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+    <bean id="personDAO" class="family.dao.PersonDAOImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
 </beans>

@@ -14,7 +14,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="Person")
+@Table(name="person")
 public class Person {
  
     @Id
@@ -24,7 +24,7 @@ public class Person {
      
     private String name;
      
-    private String country;
+    private boolean isParent;
  
     public int getId() {
         return id;
@@ -42,16 +42,16 @@ public class Person {
         this.name = name;
     }
  
-    public String getCountry() {
-        return country;
+    public boolean isParent() {
+        return isParent;
     }
  
-    public void setCountry(String country) {
-        this.country = country;
+    public void setParent(boolean isParent) {
+        this.isParent = isParent;
     }
      
     @Override
     public String toString(){
-        return "id="+id+", name="+name+", country="+country;
+        return "id="+id+", name="+name+", isParent="+isParent;
     }
 }
