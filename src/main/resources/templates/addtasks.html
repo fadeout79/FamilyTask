@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<form method="post" action="addtasks">
+	  <table>
+	  	<tr><td>Nom de la tâche</td><td><input type="text" id="summary" name="summary" /></td></tr>
+	  	<tr><td>Description</td><td><input type="text" id="description" name="description" /></td></tr>
+	  	<tr><td>Nombre de points</td><td><input type="text" id="points" name="points" /></td></tr>
+	  	<tr><td>Responsable</td><td>
+	  		<select name="personId" id="personId">
+        		<option th:each="person : ${liste}" th:value="${person.id}" th:text="${person.name}">Wireframe</option>
+      		</select>	
+      	</td></tr>
+	  	<tr><td>Répéter</td><td>
+	  		<select name="day" id="day">
+        		<option value="0" default="true">Non</option>
+        		<option value="1">Lundi</option>
+        		<option value="2">Mardi</option>
+        		<option value="3">Mercredi</option>
+        		<option value="4">Jeudi</option>
+        		<option value="5">Vendredi</option>
+        		<option value="6">Samedi</option>
+        		<option value="7">Dimanche</option>
+      		</select>	
+      	</td></tr>
+      	<tr><td colspan="2"><input type="submit" value="Soumettre" /></td></tr>
+	  </table>
+	</form>
+</body>
+</html>

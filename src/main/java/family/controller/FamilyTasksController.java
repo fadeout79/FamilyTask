@@ -10,23 +10,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 
+
 //import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import family.dao.*;
 import family.model.Person;
-
+import family.model.Tasks;
 
 @Controller
 public class FamilyTasksController {
 	
-    @RequestMapping("/greeting")
-    public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "family";
-    }
-
     @RequestMapping("/list")
     public String person(Model model) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
@@ -34,10 +29,6 @@ public class FamilyTasksController {
         PersonDAO personDAO = context.getBean(PersonDAO.class);
          
         List<Person> list = personDAO.list();
-         
-        for(Person p : list){
-            System.out.println("Person List::"+p);
-        }
         model.addAttribute("liste", list);
         
         //close resources
@@ -45,13 +36,43 @@ public class FamilyTasksController {
         
         return "list";
     }
-
-    @RequestMapping("/test")
-    public Person personTest(@RequestParam(value="name", defaultValue="World") String name) {
-        Person person1 = new Person();
-        person1.setName(name);
-        return person1;
-    }
-        
     
+    @RequestMapping(method = RequestMethod.GET, value="/addtasks")
+    public String addTasksStep1(Model model) {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        
+        PersonDAO personDAO = context.getBean(PersonDAO.class);
+         
+        List<Person> list = personDAO.list();
+        model.addAttribute("liste", list);
+        
+        //close resources
+        context.close();      	
+    
+    	return "addtasks";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value="/addtasks")
+    public String addTastsStep2(@RequestParam("summary")String summary, 
+    		@RequestParam("description")String description,
+    		@RequestParam("personId")int personId,
+    		@RequestParam("points")int points,
+    		@RequestParam("day")int day,
+    		Model model) {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+
+    	Tasks task = new Tasks();
+    	task.setSummary(summary);
+    	task.setDescription(description);
+    	task.setPersonId(personId);
+    	task.setPoints(points);
+    	if (day != 0) {
+    		task.setDay(day);
+    		task.setRecurrent(true);
+    	}
+    	TasksDAO tasksDAO = context.getBean(TasksDAO.class);
+    	tasksDAO.save(task);
+    	
+    	return "list";
+    }
 }
