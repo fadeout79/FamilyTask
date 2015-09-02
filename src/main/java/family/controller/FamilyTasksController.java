@@ -27,8 +27,8 @@ public class FamilyTasksController {
         return "family";
     }
 
-    /*@RequestMapping("/list")
-    public void person(@RequestParam(value="name", defaultValue="World") String name) {
+    @RequestMapping("/list")
+    public String person(Model model) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         
         PersonDAO personDAO = context.getBean(PersonDAO.class);
@@ -38,8 +38,12 @@ public class FamilyTasksController {
         for(Person p : list){
             System.out.println("Person List::"+p);
         }
+        model.addAttribute("liste", list);
+        
         //close resources
-        context.close();   
+        context.close();  
+        
+        return "list";
     }
 
     @RequestMapping("/test")
@@ -47,7 +51,7 @@ public class FamilyTasksController {
         Person person1 = new Person();
         person1.setName(name);
         return person1;
-    }*/
+    }
         
     
 }
