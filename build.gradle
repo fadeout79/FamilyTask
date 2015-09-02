@@ -15,7 +15,7 @@ archivesBaseName = 'FamilyTasks'
 version = '1.0-SNAPSHOT'
 
 jar {
-    baseName = 'gs-rest-service'
+    baseName = 'familyTasks'
     version =  '0.1.0'
 }
 
