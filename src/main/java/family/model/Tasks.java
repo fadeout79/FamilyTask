@@ -1,5 +1,7 @@
 package family.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +23,7 @@ public class Tasks {
     private int personId;
     private boolean isRecurrent;
     private int day;
+    private Date startDate;
     
 	public int getId() {
 		return id;
@@ -63,6 +66,12 @@ public class Tasks {
 	}
 	public void setDay(int day) {
 		this.day = day;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
     

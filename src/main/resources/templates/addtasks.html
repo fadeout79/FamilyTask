@@ -12,21 +12,23 @@
 	  	<tr><td>Nombre de points</td><td><input type="text" id="points" name="points" /></td></tr>
 	  	<tr><td>Responsable</td><td>
 	  		<select name="personId" id="personId">
+	  			<option value="0" default="true">-----</option>
         		<option th:each="person : ${liste}" th:value="${person.id}" th:text="${person.name}">Wireframe</option>
       		</select>	
       	</td></tr>
 	  	<tr><td>Répéter</td><td>
 	  		<select name="day" id="day">
         		<option value="0" default="true">Non</option>
-        		<option value="1">Lundi</option>
-        		<option value="2">Mardi</option>
-        		<option value="3">Mercredi</option>
-        		<option value="4">Jeudi</option>
-        		<option value="5">Vendredi</option>
-        		<option value="6">Samedi</option>
-        		<option value="7">Dimanche</option>
+        		<option value="1">Tous les jours</option>
+        		<option value="2">Tous les deux jours</option>
+        		<option value="3">Une fois par semaine</option>
+        		<option value="4">Une fois par deux semaines</option>
+        		<option value="5">Une fois par mois</option>
+        		<option value="6">Indéfini</option>
       		</select>	
       	</td></tr>
+      	<tr><td>Jour fixe</td><td><input type="checkbox" name="fixDay" /></td></tr>
+      	<tr><td>Date de début</td><td><input type="date" name="startDate" /></td></tr>
       	<tr><td colspan="2"><input type="submit" value="Soumettre" /></td></tr>
 	  </table>
 	</form>

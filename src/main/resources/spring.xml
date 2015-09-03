@@ -23,6 +23,7 @@
             <list>
                 <value>family.model.Person</value>
                 <value>family.model.Tasks</value>
+                <value>family.model.ToDoTasks</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -39,6 +40,9 @@
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     <bean id="tasksDAO" class="family.dao.TasksDAOImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    <bean id="toDoTasksDAO" class="family.dao.ToDoTasksDAOImpl">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
 </beans>

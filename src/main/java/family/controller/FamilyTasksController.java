@@ -9,15 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
-
-
-//import org.springframework.web.bind.annotation.RestController;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import family.dao.*;
 import family.model.Person;
 import family.model.Tasks;
+import family.model.ToDoTasks;
 
 @Controller
 public class FamilyTasksController {
@@ -53,7 +50,7 @@ public class FamilyTasksController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value="/addtasks")
-    public String addTastsStep2(@RequestParam("summary")String summary, 
+    public String addTasksStep2(@RequestParam("summary")String summary, 
     		@RequestParam("description")String description,
     		@RequestParam("personId")int personId,
     		@RequestParam("points")int points,
@@ -72,6 +69,11 @@ public class FamilyTasksController {
     	}
     	TasksDAO tasksDAO = context.getBean(TasksDAO.class);
     	tasksDAO.save(task);
+    	ToDoTasks todoTask = new ToDoTasks();
+    	todoTask.setNextDate(task.getStartDate());
+    	todoTask.setTaskId(task.getId());
+    	ToDoTasksDAO toDoTasksDAO = context.getBean(ToDoTasksDAO.class);
+    	toDoTasksDAO.save(todoTask);
     	
     	return "list";
     }
