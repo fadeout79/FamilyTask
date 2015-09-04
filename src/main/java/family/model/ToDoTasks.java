@@ -34,7 +34,7 @@ public class ToDoTasks {
 	private boolean isDone;
 	private boolean isChecked;
 	private Date nextDate;
-	private int taskId;
+	private int tasksId;
 	
     public boolean isDone() {
 		return isDone;
@@ -76,12 +76,12 @@ public class ToDoTasks {
         this.summary = summary;
     }
 
-	public int getTaskId() {
-		return taskId;
+	public int getTasksId() {
+		return tasksId;
 	}
 
-	public void setTaskId(int taskId) {
-		this.taskId = taskId;
+	public void setTasksId(int tasksId) {
+		this.tasksId = tasksId;
 	}
  
     

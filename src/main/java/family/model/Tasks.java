@@ -21,8 +21,8 @@ public class Tasks {
     private String description;
     private int points;
     private int personId;
-    private boolean isRecurrent;
-    private int day;
+    private int recurrence;
+    private int fixDay;
     private Date startDate;
     
 	public int getId() {
@@ -55,17 +55,17 @@ public class Tasks {
 	public void setPersonId(int personId) {
 		this.personId = personId;
 	}
-	public boolean isRecurrent() {
-		return isRecurrent;
+	public int getRecurrence() {
+		return recurrence;
 	}
-	public void setRecurrent(boolean isRecurent) {
-		this.isRecurrent = isRecurent;
+	public void setRecurrence(int recurrence) {
+		this.recurrence = recurrence;
 	}
-	public int getDay() {
-		return day;
+	public int getFixDay() {
+		return fixDay;
 	}
-	public void setDay(int day) {
-		this.day = day;
+	public void setFixDay(int day) {
+		this.fixDay = day;
 	}
 	public Date getStartDate() {
 		return startDate;

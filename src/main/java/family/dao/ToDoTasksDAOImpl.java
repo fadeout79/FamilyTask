@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
  
 import family.model.ToDoTasks;
+import family.model.ActiveTasks;
  
 public class ToDoTasksDAOImpl implements ToDoTasksDAO {
  
@@ -27,9 +28,9 @@ public class ToDoTasksDAOImpl implements ToDoTasksDAO {
  
     @SuppressWarnings("unchecked")
     @Override
-    public List<ToDoTasks> list() {
+    public List<ActiveTasks> list(int personId) {
         Session session = this.sessionFactory.openSession();
-        List<ToDoTasks> toDoTasksList = session.createQuery("from todoTasks").list();
+        List<ActiveTasks> toDoTasksList = session.createQuery("from ActiveTasks where personId = " + personId).list();
         session.close();
         return toDoTasksList;
     }

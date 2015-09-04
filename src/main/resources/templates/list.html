@@ -15,7 +15,14 @@
         <td th:text="${iterationStatus.count}">1</td>
         <td th:text="${person.id}">001</td>
         <td th:text="${person.name}">Name</td>
-      </tr>
+        <td><table>
+        	<tr th:each="todoTasks : ${person.todoTasks}">
+		        <td th:text="${todoTasks.summary}">001</td>
+		        <td th:text="${todoTasks.points}">Name</td>
+        	</tr>
+        	</table>
+        </td>
+       </tr>
     </table>
 </body>
 </html>
