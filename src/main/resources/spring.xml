@@ -24,6 +24,7 @@
                 <value>family.model.Person</value>
                 <value>family.model.Tasks</value>
                 <value>family.model.ToDoTasks</value>
+                <value>family.model.ActiveTasks</value>
             </list>
         </property>
         <property name="hibernateProperties">
