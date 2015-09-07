@@ -1,10 +1,10 @@
-package family.dao;
+package family.service;
 
 import java.util.List;
 
 import family.model.Person;
  
-public interface PersonDAO {
+public interface PersonService {
  
     public void addPerson(Person p);
     public void updatePerson(Person p);

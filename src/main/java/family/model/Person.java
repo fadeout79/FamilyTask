@@ -1,5 +1,6 @@
 package family.model;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -29,7 +30,17 @@ public class Person {
      
     private boolean isParent;
  
-    @Transient
+    private Date dateOfBirth;
+    
+    public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	@Transient
     private List<ActiveTasks> todoTasks;
     
     public List<ActiveTasks> getTodoTasks() {
