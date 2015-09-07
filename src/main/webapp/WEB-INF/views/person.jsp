@@ -1,9 +1,12 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<spring:url value="/resources/css/styles.css" var="mainCss" />
-	<spring:url value="/resources/js/jquery.1.10.2.min.js" var="jqueryJs" />
+	<spring:url value="/resources/js/jquery-1.11.3.min.js" var="jqueryJs" />
 	<!-- spring:url value="/resources/js/main.js" var="mainJs" /-->
 	
 	<link href="${mainCss}" rel="stylesheet" />
@@ -43,16 +46,6 @@
         </td> 
     </tr>
     <tr>
-        <td>
-            <form:label path="country">
-                <spring:message text="Country"/>
-            </form:label>
-        </td>
-        <td>
-            <form:input path="country" />
-        </td>
-    </tr>
-    <tr>
         <td colspan="2">
             <c:if test="${!empty person.name}">
                 <input type="submit"
@@ -69,26 +62,22 @@
 <br>
 <h3>Persons List</h3>
 <c:if test="${!empty listPersons}">
-	<div class="summary">
-    <table class="tg">
-    <tr>
-        <th width="80">Person ID</th>
-        <th width="120">Person Name</th>
-        <th width="120">Person Date of Birth</th>
-        <th width="60">Edit</th>
-        <th width="60">Delete</th>
-    </tr>
     <c:forEach items="${listPersons}" var="person">
-        <tr>
-            <td>${person.id}</td>
-            <td>${person.name}</td>
-            <td>${person.dateOfBirth}</td>
-            <td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>
-            <td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td>
-        </tr>
+		<div class="summary">
+            ${person.id}<br />
+            ${person.name}<br />
+            ${person.dateOfBirth}<br />
+            <a href="<c:url value='/edit/${person.id}' />" >Edit</a><br />
+            <a href="<c:url value='/remove/${person.id}' />" >Delete</a><br />
+			<div class="tasks">
+		        <c:forEach items="${person.todoTasks}" var="todoTasks">
+            		${todoTasks.id}<br />
+            		${todoTasks.summary}<br />
+			    </c:forEach>
+	    	</div>
+	    </div>
+	    
     </c:forEach>
-    </table>
-    </div>
 </c:if>
 
 </body>

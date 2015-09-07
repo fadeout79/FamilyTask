@@ -70,6 +70,9 @@
     <bean id="personService" class="family.service.PersonServiceImpl">
     	<property name="personDAO" ref="personDAO" />
     </bean>
+    <bean id="activeTasksService" class="family.service.ActiveTasksServiceImpl">
+    	<property name="toDoTasksDAO" ref="toDoTasksDAO" />
+    </bean>
  
     <tx:annotation-driven transaction-manager="transactionManager"/>
      

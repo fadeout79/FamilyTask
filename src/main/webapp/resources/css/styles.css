@@ -5,7 +5,7 @@
     background: #EEEEFF;
     padding: 15px;
     margin: 5px; 
-    width: auto;
+    width: 200px;
     height: auto; 
 }
 
@@ -13,12 +13,13 @@
 	padding: 0px;
 	margin: 0 0 5px 0;
 }
-#rcorners2 {
+
+.tasks {
     border-radius: 25px;
     border: 2px solid #8AC007;
     padding: 20px; 
-    width: 200px;
-    height: 150px; 
+    width: 150px;
+    height: 50px; 
 }
 
 #rcorners3 {

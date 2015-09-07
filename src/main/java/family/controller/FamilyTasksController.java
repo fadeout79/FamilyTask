@@ -26,6 +26,7 @@ import family.dao.*;
 import family.model.Person;
 import family.model.Tasks;
 import family.model.ToDoTasks;
+import family.service.ActiveTasksService;
 import family.service.PersonService;
 
 @Controller
@@ -34,6 +35,7 @@ public class FamilyTasksController {
 	
 	private final Logger logger = LoggerFactory.getLogger(FamilyTasksController.class);
     private PersonService personService;
+    private ActiveTasksService activeTasksService;
 
     
     @Autowired(required=true)
@@ -41,6 +43,12 @@ public class FamilyTasksController {
     public void setPersonService(PersonService ps){
         this.personService = ps;
     }
+
+    @Autowired(required=true)
+    @Qualifier(value="activeTasksService")
+    public void setActiveTasksService(ActiveTasksService ats){
+        this.activeTasksService = ats;
+    }    
     
    /* @RequestMapping("/list")
     public String person(Model model) {
@@ -64,7 +72,11 @@ public class FamilyTasksController {
     @RequestMapping(value = "/persons", method = RequestMethod.GET)
     public String listPersons(Model model) {
         model.addAttribute("person", new Person());
-        model.addAttribute("listPersons", this.personService.listPersons());
+        List<Person> list = this.personService.listPersons();
+        for (Person p : list) {
+        	p.setTodoTasks(activeTasksService.listActiveTasks(p.getId()));
+        }
+        model.addAttribute("listPersons", list);
         return "person";
     }
     
