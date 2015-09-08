@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS rewards;
 DROP TABLE IF EXISTS spentRewards;
 DROP VIEW IF EXISTS accumulatedPoints;
 DROP VIEW IF EXISTS spentPoints;
+DROP VIEW IF EXISTS activeTasks;
 
 CREATE TABLE person (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -24,6 +25,7 @@ CREATE TABLE tasks (
 	points INT NULL DEFAULT NULL,
 	fixDay BOOLEAN DEFAULT FALSE,
 	startDate DATE DEFAULT NULL,
+	image VARCHAR(255) NULL,
 	PRIMARY KEY (id)
 );
 
@@ -61,7 +63,7 @@ CREATE TABLE spentRewards (
 );
 
 CREATE VIEW activeTasks AS 
-	SELECT summary, description, points, personId
+	SELECT todoTasks.id, todoTasks.tasksId, summary, description, points, personId
 	FROM tasks 
 	INNER JOIN todoTasks 
 	WHERE tasks.id = todoTasks.tasksId AND NOT isDone AND todoTasks.nextDate > NOW();

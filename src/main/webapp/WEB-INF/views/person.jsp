@@ -14,6 +14,14 @@
     <!-- script src="${mainJs}"></script-->
 </head>
 <body>
+<ul>
+  <li><a href="persons">Home</a></li>
+  <li><a href="tasks">Tasks</a></li>
+  <li><a href="rewards">Rewards</a></li>
+  <li><a href="login">Login</a></li>
+</ul>
+<br />
+
 <h1>
     Add a Person
 </h1>
@@ -69,12 +77,12 @@
             ${person.dateOfBirth}<br />
             <a href="<c:url value='/edit/${person.id}' />" >Edit</a><br />
             <a href="<c:url value='/remove/${person.id}' />" >Delete</a><br />
-			<div class="tasks">
-		        <c:forEach items="${person.todoTasks}" var="todoTasks">
+	        <c:forEach items="${person.todoTasks}" var="todoTasks">
+				<div class="tasks">
             		${todoTasks.id}<br />
             		${todoTasks.summary}<br />
-			    </c:forEach>
-	    	</div>
+		    	</div>
+		    </c:forEach>
 	    </div>
 	    
     </c:forEach>
