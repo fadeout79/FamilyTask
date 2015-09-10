@@ -9,6 +9,16 @@
     height: auto; 
 }
 
+.taskPerson {
+    border-radius: 20px;
+    background: #EEEEFF;
+    padding: 5px;
+    margin: 5px; 
+    width: 40%;
+    display: inline-block; 
+    vertical-align: top;
+}
+
 .summaryTitle {
 	padding: 0px;
 	margin: 0 0 5px 0;
@@ -30,11 +40,34 @@ ul {
 }
 
 li {
-    display: inline;
+    border-radius: 5px;
+    background: #EEEEFF;
+	display: inline;
+	padding: 4px;
     float: left;
+    margin: 2px;
 }
 
 a {
     display: block;
     width: 60px;
+}
+
+.col1, .col2, .col3 { 
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid black;
+  background: #ccc;
+  padding: 5px;
+  margin: 5px 0.5%;
+  letter-spacing: normal;
+}
+.col1 {
+  width: 50%;
+}
+.col2 {
+  width: 40%;
+}
+.col3 {
+  width: 20%;
 }

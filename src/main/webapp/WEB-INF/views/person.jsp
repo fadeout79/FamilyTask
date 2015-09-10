@@ -6,12 +6,34 @@
 <html lang="en">
 <head>
 	<spring:url value="/resources/css/styles.css" var="mainCss" />
+	<spring:url value="/resources/css/jquery-ui.css" var="jqueryUiCss" />
 	<spring:url value="/resources/js/jquery-1.11.3.min.js" var="jqueryJs" />
-	<!-- spring:url value="/resources/js/main.js" var="mainJs" /-->
+	<spring:url value="/resources/js/jquery-ui.js" var="jqueryUiJs" />
 	
 	<link href="${mainCss}" rel="stylesheet" />
     <script src="${jqueryJs}"></script>
-    <!-- script src="${mainJs}"></script-->
+    <link href="${jqueryUiCss}" rel="stylesheet" />
+    <script src="${jqueryUiJs}"></script>
+    
+    <script type="text/javascript">
+
+    function Drop(event, ui) {
+      var draggableId = ui.draggable.attr("id");
+      var droppableId = $(this).attr("id");
+      var link = "/taskDone?tasksI" =+ draggableId + "&personId=" + droppableId;
+      $.ajax({
+          url: link
+          success: function( data ) {
+              // But, this will!
+              console.log( data );
+              alert(draggableId);
+          }
+      })
+
+    }
+    var data;       
+
+    </script>
 </head>
 <body>
 <ul>
@@ -68,25 +90,38 @@
 </table>  
 </form:form>
 <br>
-<h3>Persons List</h3>
+<div class="col1">
 <c:if test="${!empty listPersons}">
     <c:forEach items="${listPersons}" var="person">
-		<div class="summary">
-            ${person.id}<br />
+		<div class="taskPerson" id="personId${person.id}">
             ${person.name}<br />
             ${person.dateOfBirth}<br />
             <a href="<c:url value='/edit/${person.id}' />" >Edit</a><br />
             <a href="<c:url value='/remove/${person.id}' />" >Delete</a><br />
 	        <c:forEach items="${person.todoTasks}" var="todoTasks">
-				<div class="tasks">
-            		${todoTasks.id}<br />
+	        	<c:if test="${!todoTasks.isDone}">
+				<div class="tasks" id="taskId${todoTasks.id}" >
             		${todoTasks.summary}<br />
 		    	</div>
+		    	<script>
+		    		$("#taskId${todoTasks.id}").draggable();
+		    	</script>
+		    	</c:if>
 		    </c:forEach>
 	    </div>
-	    
+	    <div class="taskPerson" id="taskPerson${person.id}" >
+	    	<h3 class="summaryTitle">Done</h3>
+	    </div>
+	    <script>
+	    	$("#taskPerson${person.id}").droppable({ drop: Drop });
+	    </script>
     </c:forEach>
 </c:if>
-
+</div>
+<div class="col2">
+	<div class="summary">
+		<h1 class="summaryTitle">Open tasks</h1>
+	</div>
+</div>
 </body>
 </html>
