@@ -63,10 +63,10 @@ CREATE TABLE spentRewards (
 );
 
 CREATE VIEW activeTasks AS 
-	SELECT todoTasks.id, todoTasks.tasksId, summary, description, points, personId
+	SELECT todoTasks.id, todoTasks.tasksId, summary, description, points, personId, isDone
 	FROM tasks 
 	INNER JOIN todoTasks 
-	WHERE tasks.id = todoTasks.tasksId AND NOT isDone AND todoTasks.nextDate > NOW();
+	WHERE tasks.id = todoTasks.tasksId AND NOT (isDone AND isChecked);
 	
 CREATE VIEW accumulatedPoints AS
 	SELECT Sum(points), taskPoints.personId

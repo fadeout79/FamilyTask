@@ -10,5 +10,8 @@ public interface ToDoTasksDAO {
     public void save(ToDoTasks t);
      
     public List<ActiveTasks> list(int personId);
+    
+    public void setDone(int tasksId, int personId);
      
+    public ToDoTasks getToDoTasksById(int id);
 }

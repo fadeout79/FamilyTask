@@ -79,9 +79,19 @@ public class FamilyTasksController {
         model.addAttribute("listPersons", list);
         return "person";
     }
+
+    @RequestMapping(value = "/doneTasks", method = RequestMethod.GET)
+    public List<ToDoTasks> doneTasks(@RequestParam("personId")int personId,
+    		@RequestParam("tasksId")int tasksId) {
+    	
+
+    	return null;
+    }
+    
+    
     
     //For add and update person both
-    @RequestMapping(value= "/person/add", method = RequestMethod.POST)
+    @RequestMapping(value= "/persons/add", method = RequestMethod.POST)
     public String addPerson(@ModelAttribute("person") Person p){
          
         if(p.getId() == 0){

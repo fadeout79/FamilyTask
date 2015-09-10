@@ -8,7 +8,7 @@ INSERT INTO tasks (personId, summary, description, recurrence, points, fixDay, s
 INSERT INTO tasks (personId, summary, description, recurrence, points, fixDay, startDate) VALUES (1, 'Se brosser les cheveux', 'Se brosser les cheveux matin et soir', 1, 2, 0, '2015-09-20');
 INSERT INTO tasks (personId, summary, description, recurrence, points, fixDay, startDate) VALUES (2, 'Mettre la table', 'Mettre la table avant le souper', 1, 5, 0, '2015-09-20');
 INSERT INTO tasks (personId, summary, description, recurrence, points, fixDay, startDate) VALUES (3, 'Sortir les vidanges', 'Sortir les vidanges les lundi soirs', 1, 5, 0, '2015-09-20');
-INSERT INTO todoTasks (	tasksId, nextDate ) VALUES (1, '2015-09-18');
+INSERT INTO todoTasks (	tasksId, nextDate, isDone ) VALUES (1, '2015-09-18', TRUE);
 INSERT INTO todoTasks (	tasksId, nextDate ) VALUES (2, '2015-09-18');
 INSERT INTO todoTasks (	tasksId, nextDate ) VALUES (3, '2015-09-18');
 INSERT INTO todoTasks (	tasksId, nextDate ) VALUES (4, '2015-09-18');

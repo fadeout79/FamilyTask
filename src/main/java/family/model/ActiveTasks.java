@@ -14,12 +14,19 @@ public class ActiveTasks {
 
 	    private String summary;
 	    private int points;
+	    private boolean isDone;
 	    
 	    @Id
 	    @Column(name="id")
 	    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	    private int id;
 	    
+		public boolean isDone() {
+			return isDone;
+		}
+		public void setDone(boolean isDone) {
+			this.isDone = isDone;
+		}
 		public int getId() {
 			return id;
 		}

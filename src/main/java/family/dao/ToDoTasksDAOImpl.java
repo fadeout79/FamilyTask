@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
  
 import family.model.ToDoTasks;
 import family.model.ActiveTasks;
+import family.model.Person;
  
 public class ToDoTasksDAOImpl implements ToDoTasksDAO {
  
@@ -34,5 +35,21 @@ public class ToDoTasksDAOImpl implements ToDoTasksDAO {
         session.close();
         return toDoTasksList;
     }
+
+	@Override
+	public void setDone(int tasksId, int personId) {
+		Session session = this.sessionFactory.openSession();
+		
+		// TODO Auto-generated method stub
+		
+	}
+    
+    @Override
+    public ToDoTasks getToDoTasksById(int id) {
+        Session session = this.sessionFactory.getCurrentSession();      
+        ToDoTasks t = (ToDoTasks) session.load( ToDoTasks.class, new Integer(id));
+        return t;
+    }
+ 
  
 }
