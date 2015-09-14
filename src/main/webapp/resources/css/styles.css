@@ -25,27 +25,23 @@
 }
 
 .tasks {
-    border-radius: 25px;
+    border-radius: 10px;
     border: 2px solid #8AC007;
+    background: #8AF007;
     padding: 5px;
     margin: 2px; 
     width: 150px;
     height: auto; 
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-li {
-    border-radius: 5px;
-    background: #EEEEFF;
-	display: inline;
-	padding: 4px;
-    float: left;
-    margin: 2px;
+.tasksDone {
+    border-radius: 10px;
+    border: 2px solid #C08A07;
+    background: #F08A07;
+    padding: 5px;
+    margin: 2px; 
+    width: 150px;
+    height: auto; 
 }
 
 a {

@@ -10,46 +10,50 @@ import javax.persistence.Id;
 import javax.persistence.SecondaryTable;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
- 
+
 /**
  * TodoTasks bean
- * @author Ian-Rémi Lafleuyr
+ * 
+ * @author Ian-Rémi Lafleur
  *
  */
 @Entity
-@Table(name="todoTasks")
-@SecondaryTable(name="tasks",
-                pkJoinColumns=@PrimaryKeyJoinColumn(name="taskId"))
+@Table(name = "todoTasks")
 public class ToDoTasks {
- 
 
-    @Id
-    @Column(name="id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
-	
-	@Column(table="tasks")
-	private String summary;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-	private boolean isDone;
-	private boolean isChecked;
+	private boolean done;
+	private boolean checked;
 	private Date nextDate;
 	private int tasksId;
-	
-    public boolean isDone() {
-		return isDone;
+	private int doneByPersonId;
+
+	public int getDoneByPersonId() {
+		return doneByPersonId;
 	}
 
-	public void setDone(boolean isDone) {
-		this.isDone = isDone;
+	public void setDoneByPersonId(int personId) {
+		this.doneByPersonId = personId;
 	}
 
-	public boolean isChecked() {
-		return isChecked;
+	public boolean getDone() {
+		return done;
 	}
 
-	public void setChecked(boolean isChecked) {
-		this.isChecked = isChecked;
+	public void setDone(boolean done) {
+		this.done = done;
+	}
+
+	public boolean getChecked() {
+		return checked;
+	}
+
+	public void setChecked(boolean checked) {
+		this.checked = checked;
 	}
 
 	public Date getNextDate() {
@@ -61,20 +65,12 @@ public class ToDoTasks {
 	}
 
 	public int getId() {
-        return id;
-    }
- 
-    public void setId(int id) {
-        this.id = id;
-    }
- 
-    public String getSummary() {
-        return summary;
-    }
- 
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getTasksId() {
 		return tasksId;
@@ -83,14 +79,5 @@ public class ToDoTasks {
 	public void setTasksId(int tasksId) {
 		this.tasksId = tasksId;
 	}
- 
-    
-}
 
-/*
-id INT NOT NULL AUTO_INCREMENT,
-tasksId INT NOT NULL,
-nextDate DATE DEFAULT NULL,
-isDone BOOLEAN DEFAULT FALSE,
-isChecked BOOLEAN DEFAULT FALSE,
-*/
+}

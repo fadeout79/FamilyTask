@@ -20,18 +20,27 @@
     function Drop(event, ui) {
       var draggableId = ui.draggable.attr("id");
       var droppableId = $(this).attr("id");
-      var link = "/taskDone?tasksI" =+ draggableId + "&personId=" + droppableId;
-      $.ajax({
-          url: link
-          success: function( data ) {
-              // But, this will!
-              console.log( data );
-              alert(draggableId);
-          }
-      })
+      if (draggableId.indexOf("taskId") > -1 && droppableId.indexOf("taskPerson") > -1) {
+          var taskId = draggableId.substr(draggableId.indexOf("taskId")+6);
+          var personId = droppableId.substr(droppableId.indexOf("taskPerson")+10);
+          var link = "<c:url value='/todoTasks/taskDone' />?tasksId=" + taskId + "&personId=" + personId;
+          $.ajax({
+              url: link,
+              success: function( data ) {
+            	  $("#taskId"+taskId).remove();
+            	  $("#taskPerson"+personId).empty();
+            	  $("#taskPerson"+personId).append("<h3 class='summaryTitle'>Done</h3>");
+            	  $.each(data, function(i, item) {
+            		  if (item.done) {
+            			  $("#taskPerson"+personId).append("<div class='tasksDone' id='taskId" + item.id + "'>" + item.summary + "<br /></div>");
+            		  }
+            	  });
+                  console.log( data );
+              }
+          })
+      }
 
     }
-    var data;       
 
     </script>
 </head>
@@ -99,18 +108,30 @@
             <a href="<c:url value='/edit/${person.id}' />" >Edit</a><br />
             <a href="<c:url value='/remove/${person.id}' />" >Delete</a><br />
 	        <c:forEach items="${person.todoTasks}" var="todoTasks">
-	        	<c:if test="${!todoTasks.isDone}">
-				<div class="tasks" id="taskId${todoTasks.id}" >
-            		${todoTasks.summary}<br />
-		    	</div>
-		    	<script>
-		    		$("#taskId${todoTasks.id}").draggable();
-		    	</script>
+	        	<c:if test="${!todoTasks.done}">
+					<div class="tasks" id="taskId${todoTasks.id}" >
+           				${todoTasks.summary}<br />
+	    			</div>
+	    			<script>
+	    				$("#taskId${todoTasks.id}").draggable({
+	    					helper: "clone"
+	    				});
+	    			</script>
 		    	</c:if>
 		    </c:forEach>
 	    </div>
 	    <div class="taskPerson" id="taskPerson${person.id}" >
 	    	<h3 class="summaryTitle">Done</h3>
+	        <c:forEach items="${person.todoTasks}" var="todoTasks">
+	        	<c:if test="${todoTasks.done}">
+					<div class="tasksDone" id="taskId${todoTasks.id}" >
+           				${todoTasks.summary}<br />
+	    			</div>
+	    			<script>
+	    				$("#taskId${todoTasks.id}").draggable();
+	    			</script>
+		    	</c:if>
+		    </c:forEach>
 	    </div>
 	    <script>
 	    	$("#taskPerson${person.id}").droppable({ drop: Drop });

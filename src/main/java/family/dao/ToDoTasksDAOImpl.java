@@ -39,9 +39,10 @@ public class ToDoTasksDAOImpl implements ToDoTasksDAO {
 	@Override
 	public void setDone(int tasksId, int personId) {
 		Session session = this.sessionFactory.openSession();
-		
-		// TODO Auto-generated method stub
-		
+		ToDoTasks t = getToDoTasksById(tasksId);
+		t.setDone(true);
+		t.setDoneByPersonId(personId);
+		session.close();
 	}
     
     @Override
