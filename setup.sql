@@ -33,8 +33,9 @@ CREATE TABLE todoTasks (
 	id INT NOT NULL AUTO_INCREMENT,
 	tasksId INT NOT NULL,
 	nextDate DATE DEFAULT NULL,
-	isDone BOOLEAN DEFAULT FALSE,
-	isChecked BOOLEAN DEFAULT FALSE,
+	done BOOLEAN DEFAULT FALSE,
+	doneByPersonId INT NULL DEFAULT 0,
+	checked BOOLEAN DEFAULT FALSE,
 	PRIMARY KEY (id)
 );
 
@@ -63,10 +64,10 @@ CREATE TABLE spentRewards (
 );
 
 CREATE VIEW activeTasks AS 
-	SELECT todoTasks.id, todoTasks.tasksId, summary, description, points, personId, isDone
+	SELECT todoTasks.id, todoTasks.tasksId, summary, description, points, personId, done
 	FROM tasks 
 	INNER JOIN todoTasks 
-	WHERE tasks.id = todoTasks.tasksId AND NOT (isDone AND isChecked);
+	WHERE tasks.id = todoTasks.tasksId AND NOT (done AND checked);
 	
 CREATE VIEW accumulatedPoints AS
 	SELECT Sum(points), taskPoints.personId
