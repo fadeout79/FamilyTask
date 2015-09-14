@@ -9,11 +9,13 @@
 	<spring:url value="/resources/css/jquery-ui.css" var="jqueryUiCss" />
 	<spring:url value="/resources/js/jquery-1.11.3.min.js" var="jqueryJs" />
 	<spring:url value="/resources/js/jquery-ui.js" var="jqueryUiJs" />
+	<spring:url value="/resources/js/jquery.ui.touch-punch.min.js" var="jqueryUiTouchPunchJs" />
 	
 	<link href="${mainCss}" rel="stylesheet" />
     <script src="${jqueryJs}"></script>
     <link href="${jqueryUiCss}" rel="stylesheet" />
     <script src="${jqueryUiJs}"></script>
+    <script src="${jqueryUiTouchPunchJs}"></script>
     
     <script type="text/javascript">
 
@@ -45,12 +47,22 @@
     </script>
 </head>
 <body>
-<ul>
-  <li><a href="persons">Home</a></li>
-  <li><a href="tasks">Tasks</a></li>
-  <li><a href="rewards">Rewards</a></li>
-  <li><a href="login">Login</a></li>
-</ul>
+<nav>
+	<ul>
+		<li><a href="<c:url value='/' />">Home</a></li>
+		<li>
+      		<a href="<c:url value='/person' />">Person<span class="caret"></span></a>
+			<div>
+				<ul>
+					<li><a href="<c:url value='/person/list' />">List</a></li>
+					<li><a href="<c:url value='/person/add' />">Add</a></li>
+				</ul>
+			</div>
+		</li>
+		<li><a href="<c:url value='/tasks' />">Tasks</a></li>
+		<li><a href="<c:url value='/rewards' />">Rewards</a></li>
+	</ul>
+</nav>
 <br />
 
 <h1>
