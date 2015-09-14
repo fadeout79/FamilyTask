@@ -11,22 +11,15 @@ import javax.persistence.Table;
 @Table(name="activeTasks")
 public class ActiveTasks {
 	 
-
-	    private String summary;
-	    private int points;
-	    private boolean isDone;
-	    
 	    @Id
 	    @Column(name="id")
 	    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	    private int id;
 	    
-		public boolean isDone() {
-			return isDone;
-		}
-		public void setDone(boolean isDone) {
-			this.isDone = isDone;
-		}
+	    private String summary;
+	    private int points;
+	    private boolean done;
+	    
 		public int getId() {
 			return id;
 		}
@@ -45,7 +38,14 @@ public class ActiveTasks {
 		public void setPoints(int points) {
 			this.points = points;
 		}
-	    
+
+	    public boolean getDone() {
+			return done;
+		}
+		public void setDone(boolean done) {
+			this.done = done;
+		}
+
 	    
 	    
 }

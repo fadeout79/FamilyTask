@@ -3,15 +3,11 @@ package family.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import org.springframework.web.bind.annotation.ResponseBody;
-
 
 import java.sql.Date;
 import java.util.List;
@@ -30,10 +26,10 @@ import family.service.ActiveTasksService;
 import family.service.PersonService;
 
 @Controller
-@RequestMapping("/")
-public class FamilyTasksController {
+@RequestMapping("/person")
+public class PersonMvcController {
 	
-	private final Logger logger = LoggerFactory.getLogger(FamilyTasksController.class);
+	private final Logger logger = LoggerFactory.getLogger(PersonMvcController.class);
     private PersonService personService;
     private ActiveTasksService activeTasksService;
 
@@ -69,7 +65,7 @@ public class FamilyTasksController {
         return "list";
     }*/
 	
-    @RequestMapping(value = "/persons", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listPersons(Model model) {
         model.addAttribute("person", new Person());
         List<Person> list = this.personService.listPersons();
@@ -80,14 +76,7 @@ public class FamilyTasksController {
         return "person";
     }
 
-    @RequestMapping(value = "/doneTasks", method = RequestMethod.GET)
-    public List<ToDoTasks> doneTasks(@RequestParam("personId")int personId,
-    		@RequestParam("tasksId")int tasksId) {
-    	
 
-    	return null;
-    }
-    
     
     
     //For add and update person both

@@ -11,7 +11,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
- 
+
+import family.model.Person;
+import family.service.PersonService;
+
+import java.sql.Date;
 import java.util.Arrays;
  
 import static org.hamcrest.Matchers.*;
@@ -29,32 +33,32 @@ public class FamilyTasksControllerTest {
     private MockMvc mockMvc;
  
     @Autowired
-    private TodoService todoServiceMock;
+    private PersonService personServiceMock;
  
     //Add WebApplicationContext field here
  
     //The setUp() method is omitted.
  
     @Test
-    public void findAll_ShouldAddTodoEntriesToModelAndRenderTodoListView() throws Exception {
-        Todo first = new TodoBuilder()
-                .id(1L)
-                .description("Lorem ipsum")
-                .title("Foo")
-                .build();
+    public void findAll_ShouldAddPersonEntriesToModelAndRenderPersonListView() throws Exception {
+    	Person first = new Person();
+        first.setId(1);
+		first.setName("Ian");
+		first.setParent(true);
+		first.setDateOfBirth(new Date(1979,7,30));
  
-        Todo second = new TodoBuilder()
-                .id(2L)
-                .description("Lorem ipsum")
-                .title("Bar")
-                .build();
+        Person second = new Person();
+		second.setId(2);
+        second.setName("Marilune");
+        second.setParent(false);
+        second.setDateOfBirth(new Date(2007,12,20));
+
+        when(personServiceMock.listPersons()).thenReturn(Arrays.asList(first, second));
  
-        when(todoServiceMock.findAll()).thenReturn(Arrays.asList(first, second));
- 
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/persons"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("todo/list"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/todo/list.jsp"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/todo/persons.jsp"))
                 .andExpect(model().attribute("todos", hasSize(2)))
                 .andExpect(model().attribute("todos", hasItem(
                         allOf(
@@ -71,8 +75,8 @@ public class FamilyTasksControllerTest {
                         )
                 )));
  
-        verify(todoServiceMock, times(1)).findAll();
-        verifyNoMoreInteractions(todoServiceMock);
+        verify(personServiceMock, times(1)).listPersons();
+        verifyNoMoreInteractions(personServiceMock);
     }
 }
 
