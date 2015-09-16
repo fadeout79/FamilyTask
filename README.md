@@ -20,4 +20,4 @@ It is used to track down Family tasks in a system of point/rewards way
 * When dragged to the done bin, tasks does not display any images
 
 ## Environment variables to be setup:
-*family_image_path: To be set to the directory where the images will be uploaded.  
+* family_image_path: To be set to the directory where the images will be uploaded.  
