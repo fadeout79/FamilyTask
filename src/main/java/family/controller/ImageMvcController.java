@@ -26,10 +26,16 @@ public class ImageMvcController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ImageMvcController.class);
 
-	private String imagePath = "/home/fadeout79/development/workspace/FamilyTask/images";
+	private String imagePath;
     /**
      * Upload single file using Spring Controller
      */
+	
+	public ImageMvcController() {
+		imagePath = System.getenv().get("family_image_path");
+		//imagePath = "/home/fadeout79/development/workspace/FamilyTask/images";
+	}
+	
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public @ResponseBody
     String uploadFileHandler(@RequestParam("name") String name,
