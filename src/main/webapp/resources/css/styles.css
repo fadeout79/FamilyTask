@@ -44,6 +44,11 @@
     height: auto; 
 }
 
+img.resize{
+   max-width:50%;
+   max-height:50%;
+}
+
 a {
     display: block;
     width: 60px;

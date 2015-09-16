@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
+@RequestMapping("/images")
 public class ImageMvcController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ImageMvcController.class);
 
+	private String imagePath = "/home/fadeout79/development/workspace/FamilyTask/images";
     /**
      * Upload single file using Spring Controller
      */
@@ -38,8 +40,8 @@ public class ImageMvcController {
                 byte[] bytes = file.getBytes();
  
                 // Creating the directory to store file
-                String rootPath = System.getProperty("catalina.home");
-                File dir = new File(rootPath + File.separator + "tmpFiles");
+                String rootPath = imagePath;
+                File dir = new File(rootPath);
                 if (!dir.exists())
                     dir.mkdirs();
  
@@ -64,13 +66,14 @@ public class ImageMvcController {
         }
     }
     
-    @RequestMapping(value = "/getImage/{imageId}")
+    @RequestMapping(value = "/getImage/{imageId}.{imageExt}")
     @ResponseBody
-    public byte[] getImage(@PathVariable long imageId, HttpServletRequest request)  {
+    public byte[] getImage(@PathVariable String imageId, @PathVariable String imageExt, HttpServletRequest request)  {
         byte[] data = null;
     	try {
-		    String rpath=request.getRealPath("/");
-		    rpath=rpath+"/"+imageId; // whatever path you used for storing the file
+    		logger.info("imageId = " + imageId);
+		    String rpath=imagePath;
+		    rpath=rpath+"/"+imageId + "." + imageExt; // whatever path you used for storing the file
 		    Path path = Paths.get(rpath);
 				data = Files.readAllBytes(path);
     	} catch (IOException e) {

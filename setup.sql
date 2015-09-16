@@ -64,7 +64,7 @@ CREATE TABLE spentRewards (
 );
 
 CREATE VIEW activeTasks AS 
-	SELECT todoTasks.id, todoTasks.tasksId, summary, description, points, personId, done
+	SELECT todoTasks.id, todoTasks.tasksId, summary, description, points, personId, done, image
 	FROM tasks 
 	INNER JOIN todoTasks 
 	WHERE tasks.id = todoTasks.tasksId AND NOT (done AND checked);

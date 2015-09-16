@@ -122,6 +122,9 @@
 	        <c:forEach items="${person.todoTasks}" var="todoTasks">
 	        	<c:if test="${!todoTasks.done}">
 					<div class="tasks" id="taskId${todoTasks.id}" >
+						<c:if test="${!empty todoTasks.image }">
+							<img class="resize" src="<c:url value='/images/getImage/${todoTasks.image}' />" alt="myImage" />
+						</c:if>
            				${todoTasks.summary}<br />
 	    			</div>
 	    			<script>

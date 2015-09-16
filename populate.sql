@@ -5,7 +5,7 @@ INSERT INTO person (name, dateOfBirth) VALUES ('Mégane', '2012-07-13');
 INSERT INTO person (name, dateOfBirth, isParent) VALUES ('Dominique', '1977-07-07', TRUE);
 INSERT INTO person (name, dateOfBirth, isParent) VALUES ('Ian', '1979-07-30', TRUE);
 INSERT INTO tasks (personId, summary, description, recurrence, points, fixDay, startDate) VALUES (1, 'Vider le lave-vaisselle', 'Vider le lave-vaisselle lorsqu&quote;il est plein', 0, 5, 0, '2015-09-20');
-INSERT INTO tasks (personId, summary, description, recurrence, points, fixDay, startDate) VALUES (1, 'Se brosser les cheveux', 'Se brosser les cheveux matin et soir', 1, 2, 0, '2015-09-20');
+INSERT INTO tasks (personId, summary, description, recurrence, points, fixDay, startDate, image) VALUES (1, 'Se brosser les cheveux', 'Se brosser les cheveux matin et soir', 1, 2, 0, '2015-09-20', 'se-brosser-cheveux.png');
 INSERT INTO tasks (personId, summary, description, recurrence, points, fixDay, startDate) VALUES (2, 'Mettre la table', 'Mettre la table avant le souper', 1, 5, 0, '2015-09-20');
 INSERT INTO tasks (personId, summary, description, recurrence, points, fixDay, startDate) VALUES (3, 'Sortir les vidanges', 'Sortir les vidanges les lundi soirs', 1, 5, 0, '2015-09-20');
 INSERT INTO todoTasks (	tasksId, nextDate, done ) VALUES (1, '2015-09-18', TRUE);
