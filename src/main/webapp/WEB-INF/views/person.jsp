@@ -47,23 +47,7 @@
     </script>
 </head>
 <body>
-<nav>
-	<ul>
-		<li><a href="<c:url value='/' />">Home</a></li>
-		<li>
-      		<a href="<c:url value='/person' />">Person<span class="caret"></span></a>
-			<div>
-				<ul>
-					<li><a href="<c:url value='/person/list' />">List</a></li>
-					<li><a href="<c:url value='/person/add' />">Add</a></li>
-				</ul>
-			</div>
-		</li>
-		<li><a href="<c:url value='/tasks' />">Tasks</a></li>
-		<li><a href="<c:url value='/rewards' />">Rewards</a></li>
-	</ul>
-</nav>
-<br />
+<jsp:include page="header.jsp" />
 
 <h1>
     Add a Person

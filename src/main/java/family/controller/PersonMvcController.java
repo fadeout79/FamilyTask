@@ -77,10 +77,14 @@ public class PersonMvcController {
     }
 
 
-    
+    //For add and update person both
+    @RequestMapping(value= "/add", method = RequestMethod.GET)
+    public String addPerson(){
+        return "personAdd";
+    }    
     
     //For add and update person both
-    @RequestMapping(value= "/persons/add", method = RequestMethod.POST)
+    @RequestMapping(value= "/add", method = RequestMethod.POST)
     public String addPerson(@ModelAttribute("person") Person p){
          
         if(p.getId() == 0){
