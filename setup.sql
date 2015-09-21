@@ -13,6 +13,7 @@ CREATE TABLE person (
 	name VARCHAR(50) NOT NULL,
 	dateOfBirth DATE,
 	isParent BOOLEAN DEFAULT FALSE,
+	imagePath VARCHAR(255) NULL,
 	PRIMARY KEY (id)
 );
 

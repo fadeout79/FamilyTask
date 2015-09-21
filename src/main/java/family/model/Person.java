@@ -34,6 +34,8 @@ public class Person {
  
     private Date dateOfBirth;
     private String imagePath;
+    
+    @Transient
     private MultipartFile images;
     
     
