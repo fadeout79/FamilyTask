@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
  
 /**
  * Entity bean with JPA annotations
@@ -31,8 +33,27 @@ public class Person {
     private boolean isParent;
  
     private Date dateOfBirth;
+    private String imagePath;
+    private MultipartFile images;
     
-    public Date getDateOfBirth() {
+    
+    public MultipartFile getImages() {
+		return images;
+	}
+
+	public void setImages(MultipartFile images) {
+		this.images = images;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 

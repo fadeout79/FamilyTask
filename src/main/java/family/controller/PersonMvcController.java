@@ -46,25 +46,6 @@ public class PersonMvcController {
         this.activeTasksService = ats;
     }    
     
-   /* @RequestMapping("/list")
-    public String person(Model model) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-        
-        PersonDAO personDAO = context.getBean(PersonDAO.class);
-        ToDoTasksDAO todoTasks = context.getBean(ToDoTasksDAO.class);
-        
-        List<Person> list = personDAO.list();
-        for (Person p : list) {
-        	p.setTodoTasks(todoTasks.list(p.getId()));
-        }
-        model.addAttribute("liste", list);
-        
-        //close resources
-        context.close();  
-        
-        return "list";
-    }*/
-	
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listPersons(Model model) {
         model.addAttribute("person", new Person());
@@ -77,9 +58,9 @@ public class PersonMvcController {
     }
 
 
-    //For add and update person both
     @RequestMapping(value= "/add", method = RequestMethod.GET)
-    public String addPerson(){
+    public String addPerson(Model model){
+    	model.addAttribute("person", new Person());
         return "personAdd";
     }    
     
@@ -113,25 +94,6 @@ public class PersonMvcController {
         return "person";
     }
     
-    
-   /* @RequestMapping("/list")
-    public @ResponseBody List<Person> person() {
-    	logger.debug("List is called");
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-        
-        PersonDAO personDAO = context.getBean(PersonDAO.class);
-        ToDoTasksDAO todoTasks = context.getBean(ToDoTasksDAO.class);
-        
-        List<Person> list = personDAO.list();
-        for (Person p : list) {
-        	p.setTodoTasks(todoTasks.list(p.getId()));
-        }
-       
-        //close resources
-        context.close();  
-        
-        return list;
-    }*/
     
     /*@RequestMapping(method = RequestMethod.GET, value="/addtasks")
     public String addTasksStep1(Model model) {

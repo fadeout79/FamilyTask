@@ -35,6 +35,12 @@
 						disabled="true" /> <form:hidden path="id" /></td>
 			</tr>
 			<tr>
+				<td><form:label path="imagePath">
+						<spring:message text="Picture" />
+					</form:label></td>
+				<td><form:input type="file" path="images" /></td>
+			</tr>
+			<tr>
 				<td><form:label path="name">
 						<spring:message text="Name" />
 					</form:label></td>
@@ -44,7 +50,7 @@
 				<td><form:label path="dateOfBirth">
 						<spring:message text="Date of Birth" />
 					</form:label></td>
-				<td><form:input type="date" path="country" /></td>
+				<td><form:input type="date" path="dateOfBirth" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit"
