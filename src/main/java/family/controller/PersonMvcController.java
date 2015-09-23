@@ -125,7 +125,6 @@ public class PersonMvcController {
     		@RequestParam("description")String description,
     		@RequestParam("personId")int personId,
     		@RequestParam("points")int points,
-    		//@RequestParam("fixDay")int day,
     		@RequestParam("startDate")Date startDate,
     		@RequestParam("day")int recurrence,
     		Model model) {
@@ -137,12 +136,7 @@ public class PersonMvcController {
     	task.setPersonId(personId);
     	task.setPoints(points);
     	task.setRecurrence(recurrence);
-    	//task.setFixDay(day);
     	task.setStartDate(startDate);
-    	//if (day != 0) {
-    		//task.setFixDay(day);
-    		//task.setRecurrent(true);
-    	//}
     	TasksDAO tasksDAO = context.getBean(TasksDAO.class);
     	tasksDAO.save(task);
     	ToDoTasks todoTask = new ToDoTasks();

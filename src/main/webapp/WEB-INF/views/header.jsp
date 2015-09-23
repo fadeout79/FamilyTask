@@ -19,7 +19,15 @@
 			</div>
 		</li>
 		<li><a href="<c:url value='/tasks' />">Tasks</a></li>
-		<li><a href="<c:url value='/rewards' />">Rewards</a></li>
+		<li>
+			<a href="<c:url value='/rewards' />">Rewards</a>
+			<div>
+				<ul>
+					<li><a href="<c:url value='/reward/list' />">List</a></li>
+					<li><a href="<c:url value='/reward/add' />">Add</a></li>
+				</ul>
+			</div>
+		</li>
 	</ul>
 </nav>
 <br />

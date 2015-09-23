@@ -54,6 +54,7 @@
                 <value>family.model.Tasks</value>
                 <value>family.model.ToDoTasks</value>
                 <value>family.model.ActiveTasks</value>
+                <value>family.model.Reward</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -75,6 +76,9 @@
     <bean id="toDoTasksDAO" class="family.dao.ToDoTasksDAOImpl">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
+        <bean id="rewardDAO" class="family.dao.RewardDAOImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
     <bean id="personService" class="family.service.PersonServiceImpl">
     	<property name="personDAO" ref="personDAO" />
     </bean>
@@ -83,6 +87,9 @@
     </bean>
     <bean id="todoTasksService" class="family.service.ToDoTasksServiceImpl">
     	<property name="toDoTasksDAO" ref="toDoTasksDAO" />
+    </bean> 
+    <bean id="rewardService" class="family.service.RewardServiceImpl">
+    	<property name="rewardDAO" ref="rewardDAO" />
     </bean> 
     <tx:annotation-driven transaction-manager="transactionManager"/>
      
