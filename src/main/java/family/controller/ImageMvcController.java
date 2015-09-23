@@ -27,9 +27,6 @@ public class ImageMvcController {
 	private static final Logger logger = LoggerFactory.getLogger(ImageMvcController.class);
 
 	private String imagePath;
-    /**
-     * Upload single file using Spring Controller
-     */
 	
 	public ImageMvcController() {
 		imagePath = System.getenv().get("family_image_path");

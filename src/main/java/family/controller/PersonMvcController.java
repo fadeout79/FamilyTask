@@ -24,6 +24,7 @@ import family.model.Tasks;
 import family.model.ToDoTasks;
 import family.service.ActiveTasksService;
 import family.service.PersonService;
+import utilities.ImageProcessing;
 
 @Controller
 @RequestMapping("/person")
@@ -34,6 +35,13 @@ public class PersonMvcController {
     private ActiveTasksService activeTasksService;
 
     
+	private String imagePath;
+	
+	public PersonMvcController() {
+		imagePath = System.getenv().get("family_image_path");
+		//imagePath = "/home/fadeout79/development/workspace/FamilyTask/images";
+	}
+
     @Autowired(required=true)
     @Qualifier(value="personService")
     public void setPersonService(PersonService ps){
@@ -67,16 +75,18 @@ public class PersonMvcController {
     //For add and update person both
     @RequestMapping(value= "/add", method = RequestMethod.POST)
     public String addPerson(@ModelAttribute("person") Person p){
-         
+         logger.info("ici");
         if(p.getId() == 0){
-            //new person, add it
+        	ImageProcessing ip = new ImageProcessing();
+        	ip.createImage(p.getImages(), p.getImages().getOriginalFilename(), imagePath);
+        	p.setImagePath(p.getImages().getOriginalFilename());
             this.personService.addPerson(p);
         }else{
             //existing person, call update
             this.personService.updatePerson(p);
         }
          
-        return "redirect:/persons";
+        return "redirect:/person/list";
          
     }
     
