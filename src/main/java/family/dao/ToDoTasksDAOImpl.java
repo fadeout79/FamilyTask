@@ -8,7 +8,6 @@ import org.hibernate.Transaction;
  
 import family.model.ToDoTasks;
 import family.model.ActiveTasks;
-import family.model.Person;
  
 public class ToDoTasksDAOImpl implements ToDoTasksDAO {
  
