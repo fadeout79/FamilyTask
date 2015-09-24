@@ -56,7 +56,6 @@ public class PersonMvcController {
     
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listPersons(Model model) {
-        model.addAttribute("person", new Person());
         List<Person> list = this.personService.listPersons();
         for (Person p : list) {
         	p.setTodoTasks(activeTasksService.listActiveTasks(p.getId()));
