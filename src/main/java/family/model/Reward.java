@@ -10,8 +10,9 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="rewards")
+@Table(name="reward")
 public class Reward {
+	
     @Id
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)

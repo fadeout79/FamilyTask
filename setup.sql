@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS tasks;
 DROP TABLE IF EXISTS todoTasks;
 DROP TABLE IF EXISTS taskPoints;
-DROP TABLE IF EXISTS rewards;
+DROP TABLE IF EXISTS reward;
 DROP TABLE IF EXISTS spentRewards;
 DROP VIEW IF EXISTS accumulatedPoints;
 DROP VIEW IF EXISTS spentPoints;
@@ -49,7 +49,7 @@ CREATE TABLE taskPoints (
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE rewards (
+CREATE TABLE reward (
 	id INT NOT NULL AUTO_INCREMENT,
 	summary VARCHAR(50) NOT NULL,
 	description VARCHAR(255) NOT NULL,
@@ -79,9 +79,9 @@ CREATE VIEW accumulatedPoints AS
 	
 CREATE VIEW spentPoints AS
 	SELECT Sum(points), spentRewards.personId 
-	FROM rewards 
+	FROM reward 
 	INNER JOIN spentRewards
-	WHERE rewards.id = spentRewards.rewardsId
+	WHERE reward.id = spentRewards.rewardsId
 	GROUP BY spentRewards.personId;
 	      
 

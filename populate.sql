@@ -12,3 +12,6 @@ INSERT INTO todoTasks (	tasksId, nextDate, done ) VALUES (1, '2015-09-18', TRUE)
 INSERT INTO todoTasks (	tasksId, nextDate ) VALUES (2, '2015-09-18');
 INSERT INTO todoTasks (	tasksId, nextDate ) VALUES (3, '2015-09-18');
 INSERT INTO todoTasks (	tasksId, nextDate ) VALUES (4, '2015-09-18');
+INSERT INTO reward (summary, description, points) VALUES ('Temps Maman', 'Passer 1 heure avec maman', 5);
+INSERT INTO reward (summary, description, points) VALUES ('Délice glacé', 'Boisson glacée (slush, cappucino, etc.', 10);
+INSERT INTO reward (summary, description, points) VALUES ('Croustilles', 'Petit sac de croustilles', 2);

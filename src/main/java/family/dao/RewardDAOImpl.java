@@ -5,9 +5,11 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
- 
+import org.springframework.stereotype.Repository;
+
 import family.model.Reward;
 
+@Repository
 public class RewardDAOImpl implements RewardDAO {
  
     private SessionFactory sessionFactory;
@@ -29,7 +31,7 @@ public class RewardDAOImpl implements RewardDAO {
     @Override
     public List<Reward> listRewards() {
         Session session = this.sessionFactory.openSession();
-        List<Reward> rewardsList = session.createQuery("from Rewards").list();
+        List<Reward> rewardsList = session.createQuery("from Reward").list();
         session.close();
         return rewardsList;
     }
