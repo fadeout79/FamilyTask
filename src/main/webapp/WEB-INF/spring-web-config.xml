@@ -76,7 +76,7 @@
     <bean id="toDoTasksDAO" class="family.dao.ToDoTasksDAOImpl">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
-        <bean id="rewardDAO" class="family.dao.RewardDAOImpl">
+    <bean id="rewardDAO" class="family.dao.RewardDAOImpl">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     <bean id="personService" class="family.service.PersonServiceImpl">
