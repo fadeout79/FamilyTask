@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
+import org.apache.commons.lang.RandomStringUtils;
 
 import family.controller.ImageMvcController;
 
@@ -24,6 +25,10 @@ public class ImageProcessing {
 	public static final int IMAGE_WIDTH = 80;
 	public static final int IMAGE_HEIGHT = 80;
 	private String filePath;
+
+	private static final List<String> imageExtensions = Arrays.asList("jpg", "gif", "png");
+
+	private static final Logger logger = LoggerFactory.getLogger(ImageProcessing.class);
 
 	public String getFilePath() {
 		return filePath;
@@ -39,10 +44,13 @@ public class ImageProcessing {
 	}
 
 
-	private static final List<String> imageExtensions = Arrays.asList("jpg", "gif", "png");
-
-	private static final Logger logger = LoggerFactory.getLogger(ImageProcessing.class);
-
+	private String generateUniqueFileName() {
+		String ext = "dat";
+		File dir = new File("/home/pregzt");
+		String name = String.format("%s.%s", RandomStringUtils.randomAlphanumeric(8), ext);
+		File file = new File(dir, name);
+	}
+	
 	public void createImage(MultipartFile file, String fileName, String imagePath) {
 		try {
 			if (isValidImage(fileName)) {
