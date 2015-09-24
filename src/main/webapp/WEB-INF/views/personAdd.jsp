@@ -25,7 +25,7 @@
 
 	<c:url var="addAction" value="/person/add" />
 
-	<form:form action="${addAction}" commandName="person" >
+	<form:form enctype="multipart/form-data" action="${addAction}" modelAttribute="newPerson" >
 		<table>
 			<tr>
 				<td><form:label path="id">
@@ -34,12 +34,12 @@
 				<td><form:input path="id" readonly="true" size="8"
 						disabled="true" /> <form:hidden path="id" /></td>
 			</tr>
-			<!-- tr>
+			<tr>
 				<td><form:label path="imagePath">
 						<spring:message text="Picture" />
 					</form:label></td>
 				<td><form:input type="file" path="images" /></td>
-			</tr-->
+			</tr>
 			<tr>
 				<td><form:label path="name">
 						<spring:message text="Name" />

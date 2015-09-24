@@ -67,25 +67,19 @@ public class PersonMvcController {
 
     @RequestMapping(value= "/add", method = RequestMethod.GET)
     public String addPerson(Model model){
-    	model.addAttribute("person", new Person());
+    	model.addAttribute("newPerson", new Person());
         return "personAdd";
     }    
     
     //For add and update person both
     @RequestMapping(value= "/add", method = RequestMethod.POST)
-    public String addPerson(@ModelAttribute("person") Person p){
-         logger.info("ici");
-        if(p.getId() == 0){
-        	ImageProcessing ip = new ImageProcessing();
-        	ip.createImage(p.getImages(), p.getImages().getOriginalFilename(), imagePath);
-        	p.setImagePath(p.getImages().getOriginalFilename());
-            this.personService.addPerson(p);
-        }else{
-            //existing person, call update
-            this.personService.updatePerson(p);
-        }
-         
-        return "redirect:/person/list";
+    public String addPerson(Person p){
+    	logger.info("ici");
+    	ImageProcessing ip = new ImageProcessing();
+    	ip.createImage(p.getImages(), p.getImages().getOriginalFilename(), imagePath);
+    	p.setImagePath(p.getImages().getOriginalFilename());
+    	this.personService.addPerson(p);
+    	return "redirect:/person/list";
          
     }
     
