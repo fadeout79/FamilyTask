@@ -23,7 +23,7 @@
 
 	<h1>Add a family member</h1>
 
-	<c:url var="addAction" value="/person/add"></c:url>
+	<c:url var="addAction" value="/person/add" />
 
 	<form:form action="${addAction}" commandName="person" >
 		<table>
