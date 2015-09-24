@@ -16,16 +16,16 @@
 <link href="${jqueryUiCss}" rel="stylesheet" />
 <script src="${jqueryUiJs}"></script>
 <script src="${jqueryUiTouchPunchJs}"></script>
-<title>Add a family member</title>
+<title>Add a new reward</title>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
 
 	<h1>Add a reward</h1>
 
-	<c:url var="addAction" value="/reward/add"></c:url>
+	<c:url var="addAction" value="/reward/add" />
 
-	<form:form action="${addAction}" commandName="reward">
+	<form:form action="${addAction}" method="post" modelAttribute="newReward">
 		<table>
 			<tr>
 				<td><form:label path="id">
@@ -38,7 +38,7 @@
 				<td><form:label path="summary">
 						<spring:message text="Summary" />
 					</form:label></td>
-				<td><form:input type="text" path="summary" /></td>
+				<td><form:input path="summary" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="description">
@@ -50,7 +50,7 @@
 				<td><form:label path="points">
 						<spring:message text="Points" />
 					</form:label></td>
-				<td><form:input type="text" path="points" /></td>
+				<td><form:input path="points" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit"
