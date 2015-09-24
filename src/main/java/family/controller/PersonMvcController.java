@@ -24,7 +24,7 @@ import family.model.Tasks;
 import family.model.ToDoTasks;
 import family.service.ActiveTasksService;
 import family.service.PersonService;
-import utilities.ImageProcessing;
+import family.utilities.ImageProcessing;
 
 @Controller
 @RequestMapping("/person")
@@ -77,7 +77,7 @@ public class PersonMvcController {
     	logger.info("ici");
     	ImageProcessing ip = new ImageProcessing();
     	ip.createImage(p.getImages(), p.getImages().getOriginalFilename(), imagePath);
-    	p.setImagePath(p.getImages().getOriginalFilename());
+    	p.setImagePath(ip.getFileName());
     	this.personService.addPerson(p);
     	return "redirect:/person/list";
          

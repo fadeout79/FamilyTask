@@ -1,4 +1,4 @@
-package utilities;
+package family.utilities;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,13 +20,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.commons.lang.RandomStringUtils;
 
-import family.controller.ImageMvcController;
 
 public class ImageProcessing {
 
 	public static final int IMAGE_WIDTH = 80;
 	public static final int IMAGE_HEIGHT = 80;
 	private String filePath;
+	private String fileName;
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 
 	private static final List<String> imageExtensions = Arrays.asList("jpg", "gif", "png");
 
@@ -45,17 +56,17 @@ public class ImageProcessing {
 
 
 	private String generateUniqueFileName() {
-		String ext = "dat";
-		File dir = new File("/home/pregzt");
-		String name = String.format("%s.%s", RandomStringUtils.randomAlphanumeric(8), ext);
-		File file = new File(dir, name);
+		Date date = new Date();
+		String name = String.format("%s", RandomStringUtils.randomAlphanumeric(8)) + ".jpg";
+		return name;
 	}
 	
 	public void createImage(MultipartFile file, String fileName, String imagePath) {
 		try {
 			if (isValidImage(fileName)) {
-				setFilePath(fileName, imagePath);
-				BufferedImage tempImage = convertMultipartToBufferedImage(file, fileName, imagePath);
+				setFileName(generateUniqueFileName());
+				setFilePath(this.fileName, imagePath);
+				BufferedImage tempImage = convertMultipartToBufferedImage(file, fileName);
 				BufferedImage resizedImage = new BufferedImage(IMAGE_WIDTH, IMAGE_HEIGHT, BufferedImage.TYPE_INT_RGB);
 				Graphics2D g = resizedImage.createGraphics();
 				g.drawImage(tempImage, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT, null);
@@ -80,7 +91,7 @@ public class ImageProcessing {
 	}
 
 
-	private BufferedImage convertMultipartToBufferedImage(MultipartFile file, String fileName, String imagePath) {
+	private BufferedImage convertMultipartToBufferedImage(MultipartFile file, String fileName) {
 		BufferedImage bImageFromConvert = null;
 		if (!file.isEmpty()) {
 			try {
