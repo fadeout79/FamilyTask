@@ -61,7 +61,7 @@ public class PersonMvcController {
         	p.setTodoTasks(activeTasksService.listActiveTasks(p.getId()));
         }
         model.addAttribute("listPersons", list);
-        return "person";
+        return "personList";
     }
 
 
@@ -82,19 +82,27 @@ public class PersonMvcController {
     	return "redirect:/person/list";
          
     }
+
+    @RequestMapping("/{id}")
+    public String removePerson(@PathVariable("id") int id, Model model){
+        Person p =  this.personService.getPersonById(id);
+        p.setTodoTasks(activeTasksService.listActiveTasks(p.getId()));
+        model.addAttribute("person", p);
+        return "personShow";
+    }
     
     @RequestMapping("/remove/{id}")
     public String removePerson(@PathVariable("id") int id){
          
         this.personService.removePerson(id);
-        return "redirect:/persons";
+        return "redirect:/person/list";
     }
   
     @RequestMapping("/edit/{id}")
     public String editPerson(@PathVariable("id") int id, Model model){
         model.addAttribute("person", this.personService.getPersonById(id));
         model.addAttribute("listPersons", this.personService.listPersons());
-        return "person";
+        return "redirect:/person/list";
     }
     
     
