@@ -56,7 +56,6 @@ public class ImageProcessing {
 
 
 	private String generateUniqueFileName() {
-		Date date = new Date();
 		String name = String.format("%s", RandomStringUtils.randomAlphanumeric(8)) + ".jpg";
 		return name;
 	}
