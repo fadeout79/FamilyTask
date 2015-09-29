@@ -1,4 +1,4 @@
-INSERT INTO person (name, dateOfBirth) VALUES ('Marilune', '2007-12-20');
+INSERT INTO person (name, dateOfBirth, imagePath) VALUES ('Marilune', '2007-12-20','marilune.jpg');
 INSERT INTO person (name, dateOfBirth) VALUES ('Thiéry', '2009-09-20');
 INSERT INTO person (name, dateOfBirth) VALUES ('Maud', '1999-06-20');
 INSERT INTO person (name, dateOfBirth) VALUES ('Mégane', '2012-07-13');
