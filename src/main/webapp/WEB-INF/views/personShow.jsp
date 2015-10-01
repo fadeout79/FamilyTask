@@ -59,7 +59,7 @@
 		      context.stroke();
 		      context.font="20px Georgia";
 		      context.fillStyle = 'black';
-		      context.fillText("2");
+		      context.fillText("2", pointCenterX-5, pointCenterY+5);
 	      }, true);
           img.src="<c:url value='/images/getImage/${person.imagePath}' />";
 
